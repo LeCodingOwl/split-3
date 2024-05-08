@@ -9,6 +9,15 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 @onready var neck := $Neck
 @onready var camera := $Neck/Camera3D
 
+var direction = Vector3.ZERO
+
+func _ready():
+	direction.x = randi() % 500
+	direction.z = randi() % 500
+	
+	print("directionX: " + str(direction.x))
+	print("directionZ: " + str(direction.z))
+
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:
 		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
