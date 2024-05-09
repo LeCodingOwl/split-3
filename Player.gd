@@ -12,9 +12,6 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 #var direction = Vector3.ZERO
 
 func _ready():
-	#direction.x = randi() % 500
-	#direction.z = randi() % 500
-	
 	position.x = randi() % 18
 	position.z = randi() % 18
 	
