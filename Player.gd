@@ -11,7 +11,7 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
 @export var bullet_speed = 25
 @onready var bullet_scene = preload("res://models/bullet.tscn")
-@onready var bullet_spawn_point = $Neck/BulletSpawn
+@onready var bullet_spawn_point = $Neck/Camera3D/BulletSpawn
 
 #var direction = Vector3.ZERO
 
