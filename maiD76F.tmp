@@ -127,7 +127,7 @@ script = ExtResource("2_xrdac")
 transform = Transform3D(8.68356e-15, -3.00253e-06, 90.8947, -4.54474, -3.00253e-06, -2.32351e-20, 1.98657e-07, -68.6899, -3.97314e-06, -3.88347, 26.004, 2.52177)
 
 [node name="Beam" type="CSGCylinder3D" parent="Laser"]
-transform = Transform3D(-1.37679e-08, 0.314972, 0.38832, -0.5, -2.18557e-08, -2.00513e-23, 1.6974e-08, -0.38832, 0.314972, -3.88347, 18.17, 1.60322)
+transform = Transform3D(9.55343e-16, -2.18557e-08, 0.5, -0.5, -2.18557e-08, -6.29652e-23, 2.18557e-08, -0.5, -2.18557e-08, -3.88347, 18.17, 1.60322)
 material_override = SubResource("StandardMaterial3D_7ck2w")
 
 [node name="GPUParticles3D" type="GPUParticles3D" parent="Laser"]
