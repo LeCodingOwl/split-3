@@ -13,6 +13,7 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 @onready var bullet_scene = preload("res://models/bullet.tscn")
 @onready var bullet_spawn_point = $Neck/Camera3D/BulletSpawn
 
+
 #var direction = Vector3.ZERO
 
 func _ready():
@@ -55,6 +56,7 @@ func _physics_process(delta):
 	# Add the gravity.
 	if not is_on_floor():
 		velocity.y -= gravity * delta
+	
 """
 	# Handle jump.
 	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
