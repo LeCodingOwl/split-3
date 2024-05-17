@@ -1,12 +1,16 @@
-[gd_scene format=3 uid="uid://c4m1h584fc7j0"]
+[gd_scene load_steps=2 format=3 uid="uid://c4m1h584fc7j0"]
 
-[node name="Control" type="Control"]
+[ext_resource type="Script" path="res://transitionMenu.gd" id="1_vd175"]
+
+[node name="TransitionMenu" type="Control"]
+process_mode = 3
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_vd175")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 1
@@ -17,7 +21,7 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.128254, 0.347806, 0.279027, 1)
 
-[node name="Button" type="Button" parent="ColorRect"]
+[node name="NextButton" type="Button" parent="ColorRect"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -30,4 +34,5 @@ offset_right = 201.0
 offset_bottom = 40.0
 grow_horizontal = 2
 grow_vertical = 2
+action_mode = 0
 text = "Click to Continue"
