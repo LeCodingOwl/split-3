@@ -42,9 +42,19 @@ func turnPass():
 	# change the camera 
 	if (whosTurn == 1):
 		p2Cam.make_current()
+		p1.myTurn = false
+		p2.myTurn = true
 		whosTurn = 2
 	else:
 		p1Cam.make_current()
+		p2.myTurn = false
+		p1.myTurn = true
 		whosTurn = 1
 	turnCounter+=1
 
+func finishMenu():
+	if ( whosTurn == 1):
+		p1.myTurn = true
+	else:
+		p2.myTurn = true
+	transition.hide()

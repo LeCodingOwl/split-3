@@ -2,12 +2,15 @@ extends RigidBody3D
 
 var velocity = Vector3()
 var bounce_factor = 1.0
+
 # Called when the node enters the scene tree for the first time.
+var turnManager
+
 func _ready():
-	velocity = Vector3(10, 10, 10)
-	
+	turnManager = $".."
+
 func _integrate_forces(state: PhysicsDirectBodyState3D):
-	#apply the velocity to the ball
+	# Apply the velocity to the bullet
 	state.linear_velocity = velocity
 	
 	for collision in state.get_contact_count():
@@ -19,5 +22,9 @@ func _process(delta):
 	pass
 
 func _on_timer_timeout():
-	#Clears the bullet from the branch
+	# Clears the bullet from the branch
+	removeBullet()
+	
+func removeBullet():
+	turnManager.turnPass()
 	queue_free()

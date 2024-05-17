@@ -18,7 +18,6 @@ var turnManager
 #var direction = Vector3.ZERO
 
 func _ready():
-	turnManager = $".."
 	position.x = randi() % 18
 	position.z = randi() % 18
 	myTurn = false
@@ -44,16 +43,20 @@ func _unhandled_input(event: InputEvent) -> void:
 		if Input.is_action_just_pressed("Shoot"):
 			#print("Fire")
 			#spawn the bullet
+			myTurn = false
 			spawn_bullet()
-			turnManager.turnPass()
+
 func spawn_bullet():
 	var projectile = bullet_scene.instantiate()
-	#Creates a sibling on the Node3D root
 	add_sibling(projectile)
-	
-	#Handle the projectile movement and direction
+
+	# Set the position and direction of the bullet based on the spawn point
 	projectile.transform = bullet_spawn_point.global_transform
-	projectile.linear_velocity = bullet_spawn_point.global_transform.basis.z * -1 * bullet_speed
+
+	# Set the bullet's velocity to go forward in the direction the camera is facing
+	var direction = bullet_spawn_point.global_transform.basis.z * -1  # Forward direction
+	projectile.velocity = direction * bullet_speed
+
 
 #Adds gravity to player. We may not need this
 func _physics_process(delta):

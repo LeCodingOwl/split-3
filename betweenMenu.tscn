@@ -36,3 +36,5 @@ grow_horizontal = 2
 grow_vertical = 2
 action_mode = 0
 text = "Click to Continue"
+
+[connection signal="pressed" from="ColorRect/NextButton" to="." method="_on_next_button_pressed"]
