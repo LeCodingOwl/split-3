@@ -154,7 +154,5 @@ shape = SubResource("CapsuleShape3D_y05ys")
 
 [node name="TransitionMenu" parent="CanvasLayer" instance=ExtResource("2_4br2y")]
 
-[node name="Area3D" type="Area3D" parent="."]
-
 [connection signal="area_entered" from="PlayerOne/Area3D" to="PlayerOne" method="_on_area_3d_area_entered"]
 [connection signal="area_entered" from="PlayerTwo/Area3D" to="PlayerTwo" method="_on_area_3d_area_entered"]

@@ -31,26 +31,31 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	if p1.isDead == true:
+		print("player 1 dead")
+	elif p2.isDead == true:
+		print("player 2 dead")
 	pass
 
 
 func turnPass():
-	turnCounter+= 1;
-	# pull up the menu
-	# toggle the turn
-	transition.show()
-	# change the camera 
-	if (whosTurn == 1):
-		p2Cam.make_current()
-		p1.myTurn = false
-		p2.myTurn = true
-		whosTurn = 2
-	else:
-		p1Cam.make_current()
-		p2.myTurn = false
-		p1.myTurn = true
-		whosTurn = 1
-	turnCounter+=1
+	if p1.isDead == false || p2.isDead == false:
+		turnCounter+= 1;
+		# pull up the menu
+		# toggle the turn
+		transition.show()
+		# change the camera 
+		if (whosTurn == 1):
+			p2Cam.make_current()
+			p1.myTurn = false
+			p2.myTurn = true
+			whosTurn = 2
+		else:
+			p1Cam.make_current()
+			p2.myTurn = false
+			p1.myTurn = true
+			whosTurn = 1
+		turnCounter+=1
 
 func finishMenu():
 	if ( whosTurn == 1):

@@ -15,6 +15,7 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 var myTurn
 var turnManager
 var shot
+var isDead
 
 #var direction = Vector3.ZERO
 
@@ -23,6 +24,7 @@ func _ready():
 	position.x = randi() % 18
 	position.z = randi() % 18
 	myTurn = false
+	isDead = false
 	print("position X: " + str(position.x))
 	print("position Z: " + str(position.z))
 
@@ -89,3 +91,4 @@ func _physics_process(delta):
 func _on_area_3d_area_entered(area):
 	if (area.name == "bullet_area"):
 		print("Player hit!")
+		isDead = true
