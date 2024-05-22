@@ -6,6 +6,8 @@ var p2Cam
 var menu
 var whosTurn
 var transition
+var gameOverScene
+var gameOver
 # If this ^ is 0, it is no one's turn
 # if it is 1, it is player 1's turn
 # if it is 2, it is player 2's turn 
@@ -16,7 +18,9 @@ var turnCounter
 func _ready():
 	# get both players
 	transition = $CanvasLayer/TransitionMenu
+	gameOverScene = $CanvasLayer/GameOverMenu
 	transition.hide()
+	gameOverScene.hide()
 	p1 = $PlayerOne
 	p2 = $PlayerTwo
 	p1Cam = p1.get_node("Neck").get_node("Camera3D")
@@ -27,15 +31,22 @@ func _ready():
 	p1.myTurn = true
 	whosTurn = 1
 	turnCounter = 0
+	gameOver = false
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	if p1.isDead == true:
-		print("player 1 dead")
-	elif p2.isDead == true:
-		print("player 2 dead")
-	pass
+	if gameOver == false:
+		if p1.isDead == true:
+			print("player 1 dead")
+			gameOverScene.show()
+			gameOver = true
+			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+		elif p2.isDead == true:
+			print("player 2 dead")
+			gameOver = true
+			gameOverScene.show()
+			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 
 
 func turnPass():
