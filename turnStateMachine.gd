@@ -11,11 +11,26 @@ var gameOver
 # If this ^ is 0, it is no one's turn
 # if it is 1, it is player 1's turn
 # if it is 2, it is player 2's turn 
+@onready var animation_player = $AnimationPlayer
+@onready var light = $DirectionalLight3D  # Change to $OmniLight3D if you are using OmniLight
+@onready var timer = $Timer
+@onready var player1 = $PlayerOne
+@onready var player2 = $PlayerTwo
 
 var turnCounter
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	player1.visible = false
+	player2.visible = false
+	
+	# Start the light flash animation
+	if not animation_player:
+		print("Light node not found")
+	animation_player.play("flash")
+	# Start the timer to handle visibility after the flash
+	timer.start(3.0)  # Adjust the time to match your flash duration
+	timer.timeout.connect(_on_Timer_timeout)
 	# get both players
 	transition = $CanvasLayer/TransitionMenu
 	transition.hide()
@@ -32,7 +47,10 @@ func _ready():
 	turnCounter = 0
 	gameOver = false
 
-
+func _on_Timer_timeout():
+	# Make players visible after the timer ends
+	player1.visible = true
+	player2.visible = true
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	if gameOver == false:

@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://dcr67wj5hnxrw"]
+[gd_scene load_steps=18 format=3 uid="uid://dcr67wj5hnxrw"]
 
 [ext_resource type="Script" path="res://turnStateMachine.gd" id="1_kt5hb"]
 [ext_resource type="Script" path="res://Player.gd" id="1_vqj43"]
@@ -36,6 +36,43 @@ points = PackedVector3Array(-0.125207, -0.532801, -0.480507, 0.0227831, 0.47607,
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_gi74e"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_y05ys"]
+
+[sub_resource type="Animation" id="Animation_bga1y"]
+resource_name = "flash"
+length = 2.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("DirectionalLight3D2:light_energy")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(1.5, 1.8, 2.1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.0, 7.928, 0.0]
+}
+
+[sub_resource type="Animation" id="Animation_qghi4"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("DirectionalLight3D2:light_energy")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ougiq"]
+_data = {
+"RESET": SubResource("Animation_qghi4"),
+"flash": SubResource("Animation_bga1y")
+}
 
 [node name="Node3D" type="Node3D"]
 script = ExtResource("1_kt5hb")
@@ -78,6 +115,15 @@ mesh = SubResource("BoxMesh_ae66r")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Room/newFloor/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_5ohwt")
 
+[node name="newFloor2" type="MeshInstance3D" parent="Room"]
+transform = Transform3D(-1.31134e-07, -44.3617, 2.09272e-14, 3, -1.93911e-06, -2.09272e-14, 1.04636e-15, 1.54728e-14, 60, -1.27842, 23.41, 2.08165e-12)
+mesh = SubResource("BoxMesh_ae66r")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Room/newFloor2"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Room/newFloor2/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_5ohwt")
+
 [node name="Wall3" type="MeshInstance3D" parent="Room"]
 transform = Transform3D(-8.74228e-08, 0, 40, 0, 25, 0, -2, 0, -1.74846e-06, -0.129, 12.163, -18.997)
 mesh = SubResource("BoxMesh_ae66r")
@@ -94,6 +140,7 @@ mesh = SubResource("BoxMesh_ae66r")
 [node name="StaticBody3D" type="StaticBody3D" parent="Room/Wall4"]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Room/Wall4/StaticBody3D"]
+transform = Transform3D(1, 0, -5.68434e-14, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 shape = SubResource("ConcavePolygonShape3D_5ohwt")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
@@ -153,6 +200,17 @@ shape = SubResource("CapsuleShape3D_y05ys")
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="TransitionMenu" parent="CanvasLayer" instance=ExtResource("2_4br2y")]
+
+[node name="DirectionalLight3D2" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.0670574, 0.997749, 0, -0.997749, 0.0670574, 0, 17.1276, -0.176893)
+light_energy = 0.0
+
+[node name="Timer" type="Timer" parent="."]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_ougiq")
+}
 
 [connection signal="area_entered" from="PlayerOne/Area3D" to="PlayerOne" method="_on_area_3d_area_entered"]
 [connection signal="area_entered" from="PlayerTwo/Area3D" to="PlayerTwo" method="_on_area_3d_area_entered"]
