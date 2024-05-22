@@ -73,7 +73,7 @@ func _process(delta):
 
 
 func turnPass():
-	if p1.isDead == false || p2.isDead == false:
+	if gameOver == false && (p1.isDead == false || p2.isDead == false):
 		turnCounter+= 1;
 		# pull up the menu
 		# toggle the turn

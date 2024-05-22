@@ -1,6 +1,5 @@
 extends CharacterBody3D
 
-
 const SPEED = 5.0
 const JUMP_VELOCITY = 4.5
 
@@ -17,38 +16,41 @@ var turnManager
 var shot
 var isDead
 
-#var direction = Vector3.ZERO
-
 func _ready():
-	shot = true;
-	position.x = randi() % 18
-	position.z = randi() % 18
+	shot = true
+	position.x = randf_range(-16,16)
+	position.z = randf_range(-16,16)
 	myTurn = false
 	isDead = false
 	print("position X: " + str(position.x))
 	print("position Z: " + str(position.z))
 
+func _process(delta):
+	if ( $"..".gameOver == false &&myTurn && Input.get_mouse_mode() != Input.MOUSE_MODE_CAPTURED):
+		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+
 func _unhandled_input(event: InputEvent) -> void:
-	#Check for mouse input to lock camera to mouse
-	
+	# Check for mouse input to lock camera to mouse
 	if event is InputEventMouseButton:
 		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-	#Press the esc key to stop using camera
-	elif event.is_action_pressed("ui_cancel"):
+	# Press the esc key to stop using camera
+	if event.is_action_pressed("ui_cancel"):
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
-	#Gets the mouses rotation to set the axis for the camera
+	
 	if Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
 		if event is InputEventMouseMotion:
 			neck.rotate_y(-event.relative.x * 0.01)
 			camera.rotate_x(-event.relative.y * 0.01)
 			camera.rotation.x = clamp(camera.rotation.x, deg_to_rad(-30), deg_to_rad(60))
-	if (myTurn):
-		#Gets input map "shoot" and calls the the function to spawn a bullet
-		if Input.is_action_just_pressed("Shoot"):
-			#print("Fire")
-			#spawn the bullet
-			myTurn = false
-			spawn_bullet()
+		if myTurn:
+			# Gets input map "shoot" and calls the function to spawn a bullet
+			if Input.is_action_just_pressed("Shoot"):
+				# print("Fire")
+				# spawn the bullet
+				myTurn = false
+				spawn_bullet()
+
+
 
 func spawn_bullet():
 	var projectile = bullet_scene.instantiate()
@@ -61,15 +63,13 @@ func spawn_bullet():
 	var direction = bullet_spawn_point.global_transform.basis.z * -1  # Forward direction
 	projectile.velocity = direction * bullet_speed
 
-
-#Adds gravity to player. We may not need this
+# Adds gravity to player. We may not need this
 func _physics_process(delta):
 	# Add the gravity.
 	if not is_on_floor():
 		velocity.y -= gravity * delta
 
-
 func _on_area_3d_area_entered(area):
-	if (area.name == "bullet_area"):
+	if area.name == "bullet_area":
 		print("Player hit!")
 		isDead = true

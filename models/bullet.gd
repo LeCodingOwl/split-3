@@ -27,10 +27,10 @@ func _process(delta):
 	pass
 
 
-func _on_timer_timeout():
+#func _on_timer_timeout():
 	# Clears the bullet from the branch
-	removeBullet()
+	#removeBullet()
 
 func removeBullet():
 	turnManager.turnPass()
-	queue_free()
+	velocity = Vector3(0,0,0)

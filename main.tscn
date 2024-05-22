@@ -115,13 +115,13 @@ mesh = SubResource("BoxMesh_ae66r")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Room/newFloor/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_5ohwt")
 
-[node name="newFloor2" type="MeshInstance3D" parent="Room"]
+[node name="Ceiling" type="MeshInstance3D" parent="Room"]
 transform = Transform3D(-1.31134e-07, -44.3617, 2.09272e-14, 3, -1.93911e-06, -2.09272e-14, 1.04636e-15, 1.54728e-14, 60, -1.27842, 23.41, 2.08165e-12)
 mesh = SubResource("BoxMesh_ae66r")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="Room/newFloor2"]
+[node name="StaticBody3D" type="StaticBody3D" parent="Room/Ceiling"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Room/newFloor2/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Room/Ceiling/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_5ohwt")
 
 [node name="Wall3" type="MeshInstance3D" parent="Room"]
@@ -170,12 +170,13 @@ mesh = SubResource("CapsuleMesh_xblgj")
 shape = SubResource("ConvexPolygonShape3D_eqgit")
 
 [node name="Area3D" type="Area3D" parent="PlayerOne"]
+transform = Transform3D(1.2, 0, 0, 0, 1.2, 0, 0, 0, 1.2, 0, 0, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="PlayerOne/Area3D"]
 shape = SubResource("CapsuleShape3D_gi74e")
 
 [node name="PlayerTwo" type="CharacterBody3D" parent="." groups=["player"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2676, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2676, -2.35058)
 script = ExtResource("1_vqj43")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="PlayerTwo"]
@@ -193,6 +194,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.655506, 0)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.33388)
 
 [node name="Area3D" type="Area3D" parent="PlayerTwo"]
+transform = Transform3D(1.2, 0, 0, 0, 1.2, 0, 0, 0, 1.2, 0, 0, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="PlayerTwo/Area3D"]
 shape = SubResource("CapsuleShape3D_y05ys")

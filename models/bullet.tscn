@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://rk76ws75hy3r"]
+[gd_scene load_steps=6 format=3 uid="uid://rk76ws75hy3r"]
 
-[ext_resource type="Script" path="res://models/bullet.gd" id="1_ltdot"]
+[ext_resource type="Script" path="res://models/bullet.gd" id="1_k4vel"]
+[ext_resource type="Material" uid="uid://b7mwe8a2ys8xx" path="res://trailShader.tres" id="2_8aeax"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_2ug6b"]
 
@@ -11,11 +12,10 @@
 [node name="Bullet" type="RigidBody3D"]
 collision_layer = 2
 gravity_scale = 0.0
-script = ExtResource("1_ltdot")
+script = ExtResource("1_k4vel")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(0.535, 0, 0, 0, 0.535, 0, 0, 0, 0.535, 0, 0, 0)
-visible = false
 shape = SubResource("SphereShape3D_2ug6b")
 
 [node name="Model" type="Node3D" parent="."]
@@ -33,5 +33,9 @@ autostart = true
 [node name="CollisionShape3D" type="CollisionShape3D" parent="bullet_area"]
 transform = Transform3D(0.6, 0, 0, 0, 0.6, 0, 0, 0, 0.6, 0, 0, 0)
 shape = SubResource("SphereShape3D_0e4q2")
+
+[node name="TrailEmitter" type="TrailEmitter" parent="."]
+material = ExtResource("2_8aeax")
+size = 0.05
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
