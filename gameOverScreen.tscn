@@ -13,15 +13,9 @@ script = ExtResource("1_1s0ti")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -578.0
-offset_top = -324.0
-offset_right = 575.0
-offset_bottom = 326.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.622074, 0.516904, 0.420887, 1)
@@ -46,31 +40,31 @@ vertical_alignment = 1
 
 [node name="PlayAgain" type="Button" parent="ColorRect"]
 layout_mode = 1
-anchors_preset = 7
+anchors_preset = -1
 anchor_left = 0.5
-anchor_top = 1.0
+anchor_top = 0.786
 anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -76.5
-offset_top = -137.0
-offset_right = 91.5
-offset_bottom = -84.0
+anchor_bottom = 0.786
+offset_left = -73.0
+offset_top = -29.328
+offset_right = 95.0
+offset_bottom = 23.672
 grow_horizontal = 2
-grow_vertical = 0
+grow_vertical = 2
 theme_override_font_sizes/font_size = 32
 text = "Play Again"
 
 [node name="Exit" type="Button" parent="ColorRect"]
 layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -74.5
-offset_top = -72.0
-offset_right = 93.5
-offset_bottom = -19.0
+anchors_preset = -1
+anchor_left = 0.508
+anchor_top = 0.93
+anchor_right = 0.508
+anchor_bottom = 0.93
+offset_left = -83.716
+offset_top = -26.64
+offset_right = 84.284
+offset_bottom = 26.36
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_font_sizes/font_size = 32
@@ -79,17 +73,19 @@ text = "Exit
 
 [node name="WinnerLabel" type="Label" parent="ColorRect"]
 layout_mode = 1
-anchors_preset = 8
+anchors_preset = -1
 anchor_left = 0.5
-anchor_top = 0.5
+anchor_top = 0.648
 anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = 95.0
-offset_right = 20.0
-offset_bottom = 118.0
+anchor_bottom = 0.648
+offset_left = -21.0
+offset_top = -15.904
+offset_right = 19.0
+offset_bottom = 7.09601
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_font_sizes/font_size = 45
+text = "Player Win!"
 
 [connection signal="pressed" from="ColorRect/PlayAgain" to="." method="_on_play_again_pressed"]
 [connection signal="pressed" from="ColorRect/Exit" to="." method="_on_exit_pressed"]
