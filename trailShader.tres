@@ -1,7 +1,7 @@
 [gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://b7mwe8a2ys8xx"]
 
-[ext_resource type="Shader" path="res://models/bulletTrail.gdshader" id="1_ftc5v"]
+[ext_resource type="Shader" path="res://trailShader2.gdshader" id="1_21hl2"]
 
 [resource]
 render_priority = 0
-shader = ExtResource("1_ftc5v")
+shader = ExtResource("1_21hl2")

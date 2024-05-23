@@ -10,6 +10,7 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
 @export var bullet_speed = 25
 @onready var bullet_scene = preload("res://models/bullet.tscn")
+@onready var bullet_scene2 = preload("res://models/bullet2.tscn")
 @onready var bullet_spawn_point = $Neck/Camera3D/BulletSpawn
 var myTurn
 var turnManager
@@ -17,6 +18,7 @@ var shot
 var isDead
 
 func _ready():
+	turnManager =$".."
 	shot = true
 	position.x = randf_range(-16,16)
 	position.z = randf_range(-16,16)
@@ -53,7 +55,11 @@ func _unhandled_input(event: InputEvent) -> void:
 
 
 func spawn_bullet():
-	var projectile = bullet_scene.instantiate()
+	var projectile
+	if (turnManager.whosTurn == 1):
+		projectile = bullet_scene.instantiate()
+	else:
+		projectile = bullet_scene2.instantiate()
 	add_sibling(projectile)
 
 	# Set the position and direction of the bullet based on the spawn point
