@@ -25,4 +25,4 @@ Shoot={
 
 [rendering]
 
-environment/defaults/default_clear_color=Color(0.270222, 0.270222, 0.270222, 1)
+environment/defaults/default_clear_color=Color(0, 0, 0, 1)
